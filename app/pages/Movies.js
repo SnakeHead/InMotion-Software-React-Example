@@ -1,6 +1,7 @@
 import React from 'react'
 import { Row, Col, Container } from 'react-grid-system'
 import { Card, CardTitle, CardText } from 'material-ui'
+import SearchBar from '../components/searchBar'
 
 
 export default class Movies extends React.Component {
@@ -61,11 +62,10 @@ export default class Movies extends React.Component {
           </Col>
         </Row>
         <Row>
-        search bar will go here
+          <SearchBar onSearchTermChanged={this.movieSearch} />
+          <AddMovie />
         </Row>
       </div>
-
-
-      );
+    );
   }
 }
