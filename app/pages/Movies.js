@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col, Container } from 'react-grid-system'
 import { Card, CardTitle, CardText } from 'material-ui'
 import SearchBar from '../components/searchBar'
-import AddMovie from '../components/add_Movie'
+import AddMovie from '../components/addMovie'
 
 
 export default class Movies extends React.Component {
