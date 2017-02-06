@@ -4,30 +4,59 @@ import { Card } from 'material-ui'
 
 export default class AddMovie extends React.Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    this.state = {
+      title: '',
+      genre: '',
+      actors: '',
+      year: '',
+      rating: ''
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    console.log(target.name);
+    console.log(target.value);
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.movie(this.state);
   }
 
   render() {
     return (
       <div style={{textAlign: 'left'}}>
-        <input type='text' placeholder='Movie Title...'></input>
-        <select>
-          <option value="select" action>Genre</option>
-          <option value="Action"action>Action</option>
-          <option value="Action"action>Drama</option>
-          <option value="Action"action>Comedy</option>
-        </select>
-        <input type='text' placeholder='Actors...'></input>
-        <input type='text' placeholder='Year...'></input>
-        <select>
-          <option value="select" action>Rating</option>
-          <option value="Action" action>G</option>
-          <option value="Action" action>PG</option>
-          <option value="Action" action>PG-13</option>
-          <option value="Action" action>R</option>
-        </select>
-        <input type='submit' value='Add' />
+        <form onSubmit={this.handleSubmit}>
+          <input type='text' name='title' onChange={this.handleInputChange} placeholder='Movie Title...'></input>
+          <select name='genre' value={this.state.value}  onChange={this.handleInputChange}>
+            <option value="select" action>Genre</option>
+            <option value="Action"action>Action</option>
+            <option value="Drama"action>Drama</option>
+            <option value="Comedy"action>Comedy</option>
+          </select>
+          <input type='text' name='actors' onChange={this.handleInputChange} placeholder='Actors...'></input>
+          <input type='number' name='year' onChange={this.handleInputChange} placeholder='Year...'></input>
+          <select name='rating' value={this.state.value} onChange={this.handleInputChange}>
+            <option value="select">Rating</option>
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+          </select>
+          <input type='submit' value={this.state.value} />
+        </form>
       </div>
     )
   }
