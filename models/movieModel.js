@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 
 // instantiate a new Schema, MovieSchema
 var MovieSchema = new Schema({
-    movietitle: {
+    title: {
         type: String,
         trim: true,
         required: "Movie Title is Required"
@@ -37,4 +37,4 @@ var MovieSchema = new Schema({
 
 var Movie = mongoose.model("Movie", MovieSchema);
 
-module.expoerts = Movie
+module.exports = Movie
