@@ -11,12 +11,14 @@
   "license": "",
   "dependencies": {
     "axios": "^0.15.3",
+    "bluebird": "^3.4.7",
+    "body-parser": "^1.16.0",
     "express": "^4.14.0",
     "material-ui": "^0.16.6",
     "mongoose": "^4.8.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-grid-system": "git+https://github.com/zoover/react-grid-system.git",
+    "react-grid-system": "^2.4.0",
     "react-router": "^3.0.1",
     "react-tap-event-plugin": "^2.0.1"
   },
