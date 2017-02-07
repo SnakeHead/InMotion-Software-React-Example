@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Container } from 'react-grid-system'
+import { Row, Col, Container } from 'react-grid-system'
 
 import NavBar from '../components/Navbar'
 
@@ -9,9 +9,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
 // -----------------------------------------------------------------
-
+injectTapEventPlugin();
 // import NavBar from '../components/Navbar'
 
 export default class Main extends React.Component {
