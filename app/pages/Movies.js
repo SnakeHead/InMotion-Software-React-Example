@@ -10,43 +10,26 @@ export default class Movies extends React.Component {
       super(props);
 
       this.movieSearch = this.movieSearch.bind(this);
-      {/*This will eventually use mongo*/}
-      let movies = localStorage.getItem('movies');
-      if (movies) {
-        movies = JSON.parse(movies).movies
-      } else {
-        movies = [];
-      }
 
-      console.log(movies);
       this.state = {
         movies: movies,
         movie: ""
       }
-      this.handleChange = this.handleChange.bind(this);
-      this.handleAddMovie = this.handleAddMovie.bind(this);
-    }
 
-    handleChange(event) {
-      this.setState({
-        movie: event.target.value
-      });
-    }
+    this.addMovie = this.addMovie.bind(this);
+    this.movieSearch = this.movieSearch.bind(this);
+  }
 
-    handleAddMovie() {
-      const movies = this.state.movies.concat(this.state.movie);
-      this.setState({
-        movies: movies,
-        movie: ""
-      })
-      const stringifiedMovies = JSON.stringify({ movies: movies });
-      localStorage.setItem('movies', stringifiedMovies);
-    }
+  addMovie(newMovie) {
+    let {movies} = this.state;
+    movies = [newMovie, ...movies];
+    helpers.saveMovie(newMovie);
+    this.setState({movies});
+  }
 
-    movieSearch(searchTerm) {
-      console.log(searchTerm);
-      console.log(this.state.movies);
-    }
+  movieSearch(searchTerm) {
+
+  }
 
 
   render() {
@@ -64,7 +47,7 @@ export default class Movies extends React.Component {
         </Row>
         <Row>
           <SearchBar onSearchTermChanged={this.movieSearch} />
-          <AddMovie />
+          <AddMovie addMovie={this.addMovie}/>
         </Row>
       </div>
     );

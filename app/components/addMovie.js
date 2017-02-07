@@ -15,6 +15,7 @@ export default class AddMovie extends React.Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(event) {
@@ -22,8 +23,6 @@ export default class AddMovie extends React.Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    console.log(target.name);
-    console.log(target.value);
 
     this.setState({
       [name]: value
@@ -32,7 +31,8 @@ export default class AddMovie extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.movie(this.state);
+    const movie = {...this.state};
+    this.props.addMovie(movie)
   }
 
   render() {
