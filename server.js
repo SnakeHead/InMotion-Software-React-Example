@@ -38,7 +38,7 @@ db.once("open", function() {
 app.get("/api/search", function(req, res) {
   var movieTitle = req.query.t || '';
   // We will find all the mmovies & sort them in ascending title order, then limit the records to 5
-
+  // This is using regex to find movies where the title begins with...
   Movie.find({ title: {$regex : "^" + movieTitle, '$options' : 'i' }}).sort([
     ["title", "ascending"]
   ]).exec(function(err, doc) {
