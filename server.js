@@ -84,6 +84,20 @@ app.post("/api", function(req, res) {
   });
 });
 
+app.delete("/api/deleteMovie", function (req, res) {
+  console.log(req.body);
+  Movie.remove({ _id: req.body }, function(err) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.send("Deleted Movie!");
+    }
+  });
+});
+
+
+
 // Connection to PORT
 app.listen(PORT, function() {
   console.log(`Listening On Port: ${PORT}`);

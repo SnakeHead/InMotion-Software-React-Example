@@ -11,6 +11,16 @@ module.exports = {
     return axios.get("/api/search/?t=" + searchTitle.searchTerm).then(function(response) {
       return response;
     });
-  }
+  },
 
+  deleteMovie: function(deleteMovie) {
+    console.log("MovieID: " + deleteMovie);
+    return axios.request({
+      url: '/api/deleteMovie/',
+      method: 'delete',
+      data: ( deleteMovie : deleteMovie )
+    }).then(function(response) {
+      return response;
+    });
+    }
 };
