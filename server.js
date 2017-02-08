@@ -35,13 +35,13 @@ db.once("open", function() {
 });
 
 // Routes
-app.get("/api", function(req, res) {
-  var movieTitle = req.body.movieTitle;
+app.get("/api/search", function(req, res) {
+  var movieTitle = req.query.t || '';
+  // We will find all the mmovies & sort them in ascending title order, then limit the records to 5
 
-  // We will find all the records, sort it in ascending order, then limit the records to 5 (for now)
-  Movie.find({}).sort([
+  Movie.find({ title: {$regex : "^" + movieTitle, '$options' : 'i' }}).sort([
     ["title", "ascending"]
-  ]).limit(5).exec(function(err, doc) {
+  ]).exec(function(err, doc) {
     if (err) {
       console.log(err);
     }
@@ -60,11 +60,11 @@ app.post("/api", function(req, res) {
 
   var movieID = req.body.movieID;
   const {title, genre, actors, year, rating} = req.body;
-  // Note how this route utilizes the findOneAndUpdate function to update the clickCount
+  // Note how this route utilizes the findOneAndUpdate function to update the movie
   // { upsert: true } is an optional object we can pass into the findOneAndUpdate method
   // If included, Mongoose will create a new document matching the description if one is not found
   Movie.findOneAndUpdate({
-    _id: movieID
+    _id: movieID || mongoose.Types.ObjectId()
   }, {
     $set: {
       title: title,

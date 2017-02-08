@@ -33,23 +33,30 @@ export default class AddMovie extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const movie = {...this.state};
-    this.props.addMovie(movie)
+    this.props.addMovie(movie);
+    this.setState({
+      title: '',
+      genre: '',
+      actors: '',
+      year: '',
+      rating: ''
+    });
   }
 
   render() {
     return (
       <div style={{textAlign: 'left'}}>
         <form onSubmit={this.handleSubmit}>
-          <input type='text' name='title' onChange={this.handleInputChange} placeholder='Movie Title...'></input>
+          <input type='text' value={this.state.title} name='title' onChange={this.handleInputChange} placeholder='Movie Title...'></input>
           <select name='genre' value={this.state.value}  onChange={this.handleInputChange}>
             <option value="select" action>Genre</option>
             <option value="Action"action>Action</option>
             <option value="Drama"action>Drama</option>
             <option value="Comedy"action>Comedy</option>
           </select>
-          <input type='text' name='actors' onChange={this.handleInputChange} placeholder='Actors...'></input>
-          <input type='number' name='year' onChange={this.handleInputChange} placeholder='Year...'></input>
-          <select name='rating' value={this.state.value} onChange={this.handleInputChange}>
+          <input type='text' value={this.state.actors} name='actors' onChange={this.handleInputChange} placeholder='Actors...'></input>
+          <input type='number' value={this.state.year} name='year' onChange={this.handleInputChange} placeholder='Year...'></input>
+          <select name='rating' value={this.state.rating} onChange={this.handleInputChange}>
             <option value="select">Rating</option>
             <option value="G">G</option>
             <option value="PG">PG</option>
