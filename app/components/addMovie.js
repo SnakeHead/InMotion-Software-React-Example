@@ -46,7 +46,7 @@ export default class AddMovie extends React.Component {
       <div style={{textAlign: 'left'}}>
         <form onSubmit={this.handleSubmit}>
           <input type='text' value={this.state.title} name='title' onChange={this.handleInputChange} placeholder='Movie Title...'></input>
-          <select name='genre' value={this.state.value}  onChange={this.handleInputChange}>
+          <select name='genre' value={this.state.genre}  onChange={this.handleInputChange}>
             <option value="select" action>Genre</option>
             <option value="Action"action>Action</option>
             <option value="Drama"action>Drama</option>
