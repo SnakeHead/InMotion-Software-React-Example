@@ -14,6 +14,7 @@ export default class UpdateMovie extends React.Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   componentDidMount() {
@@ -58,15 +59,15 @@ export default class UpdateMovie extends React.Component {
       <div style={{textAlign: 'left'}}>
         <form onSubmit={this.handleSubmit}>
           <input type='text' value={this.state.movie.title} name='title' onChange={this.handleInputChange} placeholder='Movie Title...'></input>
-          <select name='genre' value=''  onChange={this.handleInputChange}>
+          <select name='genre' value={this.state.movie.genre}  onChange={this.handleInputChange}>
             <option value="select" action>Genre</option>
             <option value="Action"action>Action</option>
             <option value="Drama"action>Drama</option>
             <option value="Comedy"action>Comedy</option>
           </select>
-          <input type='text' value='' name='actors' onChange={this.handleInputChange} placeholder='Actors...'></input>
-          <input type='number' value='' name='year' onChange={this.handleInputChange} placeholder='Year...' style={{width: '50px'}}></input>
-          <select name='rating' value='' onChange={this.handleInputChange}>
+          <input type='text' value={this.state.movie.actors} name='actors' onChange={this.handleInputChange} placeholder='Actors...'></input>
+          <input type='number' value={this.state.movie.year} name='year' onChange={this.handleInputChange} placeholder='Year...' style={{width: '50px'}}></input>
+          <select name='rating' value={this.state.movie.rating} onChange={this.handleInputChange}>
             <option value="select">Rating</option>
             <option value="G">G</option>
             <option value="PG">PG</option>

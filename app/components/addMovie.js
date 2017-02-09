@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col } from 'react-grid-system'
-import { Card } from 'material-ui'
+import { Card, RaisedButton } from 'material-ui'
 
 export default class AddMovie extends React.Component {
 
@@ -45,6 +45,7 @@ export default class AddMovie extends React.Component {
     return (
       <div style={{textAlign: 'left'}}>
         <form onSubmit={this.handleSubmit}>
+          <label>Add movie: </label>
           <input type='text' value={this.state.title} name='title' onChange={this.handleInputChange} placeholder='Movie Title...'></input>
           <select name='genre' value={this.state.genre}  onChange={this.handleInputChange}>
             <option value="select" action>Genre</option>
@@ -61,7 +62,7 @@ export default class AddMovie extends React.Component {
             <option value="PG-13">PG-13</option>
             <option value="R">R</option>
           </select>
-          <input type='submit' value={this.state.value} />
+          <input type='submit' value={this.state.value} style={{marginLeft: '20px'}}/>
         </form>
       </div>
     )
