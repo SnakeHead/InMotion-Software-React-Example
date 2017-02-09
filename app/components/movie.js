@@ -8,36 +8,16 @@ export default class Movie extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      title: '',
-      genre: '',
-      actors: '',
-      year: '',
-      rating: ''
-    };
     this.onClick = this.onClick.bind(this);
   }
 
   onClick() {
-    helpers.deleteMovie(this.props.movie._id).then(function(response) {
-      this.setState({
-        title: '',
-        genre: '',
-        actors: '',
-        year: '',
-        rating: ''
-      });
-    }.bind(this));
-
-    const movie = {...this.state};
-    this.props.deleteMovie(movie);
+    this.props.deleteMovie(this.props.movie._id);
   }
 
   render() {
     return (
-      <TableRow
-        displayBorder={true}
-      >
+      <TableRow>
       <TableRowColumn data={this.props.movie._id} selected={this.selected}>{this.props.movie.title}</TableRowColumn>
       <TableRowColumn>{this.props.movie.genre}</TableRowColumn>
       <TableRowColumn>{this.props.movie.actors}</TableRowColumn>

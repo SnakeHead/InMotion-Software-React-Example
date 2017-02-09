@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col, Container } from 'react-grid-system'
 import { Card, CardTitle, CardText } from 'material-ui'
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
-  from 'material-ui';
+  from 'material-ui/Table';
 import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
 import SearchBar from '../components/searchBar'
@@ -35,9 +35,10 @@ export default class Movies extends React.Component {
       this.addMovie = this.addMovie.bind(this);
       this.movieSearch = this.movieSearch.bind(this);
       this.deleteMovie = this.deleteMovie.bind(this);
+      this.refreshMovies = this.refreshMovies.bind(this);
   }
 
-  componentDidMount() {
+  refreshMovies() {
     // Get the all the movies.
     let searchTerm = '';
 
@@ -46,17 +47,20 @@ export default class Movies extends React.Component {
     }.bind(this));
   }
 
-  addMovie(newMovie) {
-    let {movies} = this.state;
-    movies = [newMovie, ...movies];
-    helpers.saveMovie(newMovie);
-    this.setState({movies});
+  componentDidMount() {
+    this.refreshMovies();
   }
 
-  deleteMovie(delMovie) {
-    let {movies} = this.state;
-    movies = [delMovie, ...movies];
-    this.setState({movies});
+  addMovie(newMovie) {
+    helpers.saveMovie(newMovie).then(function(response) {
+      this.refreshMovies();
+    }.bind(this));
+  }
+
+  deleteMovie(delMovieId) {
+    helpers.deleteMovie(delMovieId).then(function(response) {
+      this.refreshMovies();
+    }.bind(this));
   }
 
   movieSearch(searchTerm) {
@@ -89,18 +93,8 @@ export default class Movies extends React.Component {
           <AddMovie addMovie={this.addMovie}/>
         </Row>
         <div>
-          <Table
-            height={this.state.height}
-            fixedHeader={this.state.fixedHeader}
-            fixedFooter={this.state.fixedFooter}
-            selectable={true}
-            multiSelectable={this.state.multiSelectable}
-          >
-            <TableHeader
-              displaySelectAll={this.state.showCheckboxes}
-              adjustForCheckbox={false}
-              enableSelectAll={this.state.enableSelectAll}
-          >
+          <Table selectable={true}>
+            <TableHeader displaySelectAll={false} adjustForCheckbox={false} style={{textAlign: 'left'}}>
               <TableRow>
                 <TableHeaderColumn>Title</TableHeaderColumn>
                 <TableHeaderColumn>Genre</TableHeaderColumn>
@@ -109,13 +103,8 @@ export default class Movies extends React.Component {
                 <TableHeaderColumn>Rating</TableHeaderColumn>
               </TableRow>
             </TableHeader>
-            <TableBody
-              fixedHeader={true}
-              fixedFooter={true}
-              stripedRows={true}
-              showRowHover={true}
-            >
-              {this.state.movies.map((movie) => <Movie movie={movie} key={movie._id} deleteMovie={this.delMovie} /> )}
+            <TableBody>
+              {this.state.movies.map((movie) => <Movie movie={movie} key={movie._id} deleteMovie={this.deleteMovie} /> )}
             </TableBody>
           </Table>
         </div>
