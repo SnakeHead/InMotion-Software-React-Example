@@ -24,8 +24,8 @@ export default class Movie extends React.Component {
       <TableRowColumn>{this.props.movie.year}</TableRowColumn>
       <TableRowColumn>{this.props.movie.rating}</TableRowColumn>
       <TableRowColumn>
-          <button type='submit' onClick={this.onClick}>
-            <FontIcon className="fa fa-times" />
+        <button type='submit' onClick={this.onClick}>
+          <FontIcon className="fa fa-times" style={{fontSize: '12px', color: 'red'}} />
         </button>
       </TableRowColumn>
       </TableRow>

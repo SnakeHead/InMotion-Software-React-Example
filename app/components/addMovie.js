@@ -53,7 +53,7 @@ export default class AddMovie extends React.Component {
             <option value="Comedy"action>Comedy</option>
           </select>
           <input type='text' value={this.state.actors} name='actors' onChange={this.handleInputChange} placeholder='Actors...'></input>
-          <input type='number' value={this.state.year} name='year' onChange={this.handleInputChange} placeholder='Year...'></input>
+          <input type='number' value={this.state.year} name='year' onChange={this.handleInputChange} placeholder='Year...' style={{width: '50px'}}></input>
           <select name='rating' value={this.state.rating} onChange={this.handleInputChange}>
             <option value="select">Rating</option>
             <option value="G">G</option>
