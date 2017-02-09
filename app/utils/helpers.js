@@ -13,6 +13,14 @@ module.exports = {
     });
   },
 
+  // Search for a movie by ID
+  getMovieByID: function(movieID) {
+    return axios.get("/api/getMovieByID/?id=" + movieID).then(function(response) {
+      return response;
+    });
+  },
+
+  // Delete a movie by ID
   deleteMovie: function(deleteMovie) {
     return axios.request({
       url: '/api/deleteMovie/',

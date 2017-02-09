@@ -37,7 +37,7 @@ db.once("open", function() {
 // Routes
 app.get("/api/search", function(req, res) {
   var movieTitle = req.query.t || '';
-  // We will find all the mmovies & sort them in ascending title order, then limit the records to 5
+  // We will find all the mmovies & sort them in ascending title order.
   // This is using regex to find movies where the title begins with...
   Movie.find({ title: {$regex : "^" + movieTitle, '$options' : 'i' }}).sort([
     ["title", "ascending"]
@@ -50,6 +50,20 @@ app.get("/api/search", function(req, res) {
     }
   });
 });
+
+app.get("/api/getMovieByID", function(req, res) {
+  var movieID = req.query.id || '';
+  // We will get the movie with the passed id.
+  Movie.find({ _id: movieID }).exec(function(err, doc) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.send(doc);
+    }
+  });
+});
+
 
 app.get(`*`, function(req, res) {
   res.sendFile('public/index.html', { root: __dirname });
