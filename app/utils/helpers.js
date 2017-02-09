@@ -14,7 +14,6 @@ module.exports = {
   },
 
   deleteMovie: function(deleteMovie) {
-    console.log("MovieID: " + deleteMovie);
     return axios.request({
       url: '/api/deleteMovie/',
       method: 'delete',
