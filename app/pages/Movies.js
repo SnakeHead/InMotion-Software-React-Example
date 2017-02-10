@@ -10,6 +10,9 @@ import AddMovie from '../components/addMovie'
 import Movie from '../components/movie'
 import helpers from '../utils/helpers'
 
+var Griddle = require('griddle-react');
+
+
 const styles = {
   propContainer: {
     width: 200,
