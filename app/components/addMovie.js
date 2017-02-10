@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col } from 'react-grid-system'
-import { Card, RaisedButton } from 'material-ui'
+import {Table, Button, Glyphicon, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap/lib/'
 
 export default class AddMovie extends React.Component {
 
@@ -22,7 +22,6 @@ export default class AddMovie extends React.Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-
     this.setState({
       [name]: value
     });
@@ -44,26 +43,41 @@ export default class AddMovie extends React.Component {
   render() {
     return (
       <div style={{textAlign: 'left'}}>
-        <form onSubmit={this.handleSubmit}>
-          <label>Add movie: </label>
-          <input type='text' value={this.state.title} name='title' onChange={this.handleInputChange} placeholder='Movie Title...'></input>
-          <select name='genre' value={this.state.genre}  onChange={this.handleInputChange}>
-            <option value="select" action>Genre</option>
-            <option value="Action"action>Action</option>
-            <option value="Drama"action>Drama</option>
-            <option value="Comedy"action>Comedy</option>
-          </select>
-          <input type='text' value={this.state.actors} name='actors' onChange={this.handleInputChange} placeholder='Actors...'></input>
-          <input type='number' value={this.state.year} name='year' onChange={this.handleInputChange} placeholder='Year...' style={{width: '50px'}}></input>
-          <select name='rating' value={this.state.rating} onChange={this.handleInputChange}>
-            <option value="select">Rating</option>
-            <option value="G">G</option>
-            <option value="PG">PG</option>
-            <option value="PG-13">PG-13</option>
-            <option value="R">R</option>
-          </select>
-          <input type='submit' value={this.state.value} style={{marginLeft: '20px'}}/>
-        </form>
+        <Form inline onSubmit={this.handleSubmit}>
+          <ControlLabel style={{paddingRight: 5 }}>Add Movie</ControlLabel>
+          <FormGroup bsSize='small'>
+            <FormControl type="text" value={this.state.title} name='title' onChange={this.handleInputChange} placeholder='Movie Title...'/>
+          </FormGroup>
+
+          <FormGroup bsSize='small'>
+            <FormControl componentClass="select" value={this.state.genre} name='genre' onChange={this.handleInputChange}>
+              <option value="select" action>Genre</option>
+              <option value="Action"action>Action</option>
+              <option value="Drama"action>Drama</option>
+              <option value="Comedy"action>Comedy</option>
+            </FormControl>
+          </FormGroup>
+
+          <FormGroup bsSize='small'>
+            <FormControl type="text" value={this.state.actors} name='actors' onChange={this.handleInputChange} placeholder='Actors...'/>
+          </FormGroup>
+
+          <FormGroup bsSize='small'>
+            <FormControl type="text" value={this.state.year} name='year' onChange={this.handleInputChange} placeholder='Year...'/>
+          </FormGroup>
+
+          <FormGroup bsSize='small'>
+            <FormControl componentClass="select" value={this.state.rating} name='rating' onChange={this.handleInputChange}>
+              <option value="G" action>Rating</option>
+              <option value="G" action>G</option>
+              <option value="PG"action>PG</option>
+              <option value="PG-13"action>PG-13</option>
+              <option value="R"action>R</option>
+            </FormControl>
+          </FormGroup>
+
+          <Button type="submit" bsStyle="primary" bsSize='xsmall' style={{marginLeft: 5 }}>Add</Button>
+        </Form>
       </div>
     )
   }

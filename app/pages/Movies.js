@@ -1,16 +1,16 @@
 import React from 'react'
-import { Row, Col, Container } from 'react-grid-system'
-import { Card, CardTitle, CardText } from 'material-ui'
-import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
-  from 'material-ui/Table';
-import TextField from 'material-ui/TextField';
-import Toggle from 'material-ui/Toggle';
+// import { Row, Col, Container } from 'react-grid-system'
+// import { Card, CardTitle, CardText } from 'material-ui'
+// import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
+//   from 'material-ui/Table';
+// import TextField from 'material-ui/TextField';
+// import Toggle from 'material-ui/Toggle';
 import SearchBar from '../components/searchBar'
 import AddMovie from '../components/addMovie'
 import Movie from '../components/movie'
 import helpers from '../utils/helpers'
 
-var Griddle = require('griddle-react');
+import {Table, Panel, Button} from 'react-bootstrap/lib/';
 
 
 const styles = {
@@ -81,34 +81,26 @@ export default class Movies extends React.Component {
   render() {
     return (
       <div>
-        <Row>
-          <Col md={8} offset={{ md: 2 }}>
-            <Card>
-              <CardTitle
-                title="Welcome to my movie collection!"
-                subtitle="Woot!"
-              />
-              </Card>
-          </Col>
-        </Row>
-        <Row>
+        <Panel header="Welcome to my movie collection!">
           <SearchBar onSearchTermChanged={this.movieSearch} />
+        </Panel>
+        <Panel>
           <AddMovie addMovie={this.addMovie}/>
-        </Row>
+        </Panel>
         <div>
-          <Table selectable={true}>
-            <TableHeader displaySelectAll={false} adjustForCheckbox={false} style={{textAlign: 'left'}}>
-              <TableRow>
-                <TableHeaderColumn>Title</TableHeaderColumn>
-                <TableHeaderColumn>Genre</TableHeaderColumn>
-                <TableHeaderColumn>Actors</TableHeaderColumn>
-                <TableHeaderColumn>Year</TableHeaderColumn>
-                <TableHeaderColumn>Rating</TableHeaderColumn>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
+          <Table striped bordered condensed hover >
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Actors</th>
+                <th>Year</th>
+                <th>Rating</th>
+              </tr>
+            </thead>
+            <tbody>
               {this.state.movies.map((movie) => <Movie movie={movie} key={movie._id} deleteMovie={this.deleteMovie} /> )}
-            </TableBody>
+            </tbody>
           </Table>
         </div>
       </div>

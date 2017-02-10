@@ -3,7 +3,7 @@ var axios = require("axios");
 module.exports = {
   // save/update movie data
   saveMovie: function(movieData) {
-    return axios.post("/api", movieData);
+    return axios.post("/api/save", movieData);
   },
 
   // Search for a movie by title
